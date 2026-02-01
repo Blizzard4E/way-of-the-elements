@@ -2,11 +2,11 @@ class_name Health
 extends Node
 
 signal health_hit_zero
-signal health_changed(old_value: int, new_value: int)
-signal damaged(amount: int)
+signal health_changed(old_value: float, new_value: float)
+signal damaged(amount: float)
 
-var max_hp: int = 100
-var current_hp: int = 100:
+@export var max_hp: float = 100
+@export var current_hp: float = 100:
 	set(value):
 		var old = current_hp
 		current_hp = clamp(value, 0, max_hp)
@@ -15,9 +15,9 @@ var current_hp: int = 100:
 		if current_hp == 0 and old > 0:
 			health_hit_zero.emit()
 
-func take_damage(amount: int):
+func take_damage(amount: float):
 	current_hp -= amount
 	damaged.emit(amount)
 
-func heal(amount: int):
+func heal(amount: float):
 	current_hp += amount

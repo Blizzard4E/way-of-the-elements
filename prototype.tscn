@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://5iu4driwk5xr"]
 
 [ext_resource type="Texture2D" uid="uid://dl826f6d2y2bk" path="res://assets/textures/prototype_tiles/Dark/texture_09.png" id="1_vo8sw"]
-[ext_resource type="Texture2D" uid="uid://ctn7ey5psptar" path="res://assets/textures/prototype_tiles/Green/texture_10.png" id="2_883nb"]
-[ext_resource type="Script" uid="uid://pa12g48n3jsi" path="res://components/health.gd" id="3_883nb"]
-[ext_resource type="Script" uid="uid://bqnjcq8k5ktr2" path="res://components/player_controller.gd" id="4_7fmhn"]
-[ext_resource type="Script" uid="uid://b3m5vm5llf8ym" path="res://components/player_camera.gd" id="5_mbk3n"]
+[ext_resource type="PackedScene" uid="uid://dy36s888666jv" path="res://entities/player.tscn" id="2_1hs15"]
+[ext_resource type="PackedScene" uid="uid://cikf6cfajpaoy" path="res://entities/enemy.tscn" id="3_7fmhn"]
+[ext_resource type="Script" uid="uid://wy70urcrf6yt" path="res://systems/swarm_system.gd" id="4_mbk3n"]
+[ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="6_1ixuk"]
+[ext_resource type="Script" uid="uid://dcplm184rj3u4" path="res://systems/behavior_system.gd" id="8_h681u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mbk3n"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,13 +31,6 @@ size = Vector3(100, 0.5, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gxbh7"]
 size = Vector3(100, 0.5, 100)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbk3n"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ixuk"]
-albedo_texture = ExtResource("2_883nb")
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8y2k3"]
-
 [node name="Node3D" type="Node3D" unique_id=1876190570]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1528225828]
@@ -51,23 +45,18 @@ mesh = SubResource("BoxMesh_nk8ey")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=501860251]
 shape = SubResource("BoxShape3D_gxbh7")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=952595449]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="Player" parent="." unique_id=1390504542 instance=ExtResource("2_1hs15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2503171, -20.992147)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1100653727]
-shape = SubResource("CapsuleShape3D_mbk3n")
+[node name="BehaviorSystem" type="Node" parent="." unique_id=1074554076]
+script = ExtResource("8_h681u")
+metadata/_custom_type_script = "uid://dcplm184rj3u4"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=209275217]
-material_override = SubResource("StandardMaterial3D_1ixuk")
-mesh = SubResource("CapsuleMesh_8y2k3")
+[node name="SwarmSystem" type="Node" parent="." unique_id=398010474]
+script = ExtResource("4_mbk3n")
+enemy_scene = ExtResource("3_7fmhn")
+spawn_interval = 0.1
+max_enemies = 1000
+metadata/_custom_type_script = "uid://wy70urcrf6yt"
 
-[node name="Health" type="Node3D" parent="CharacterBody3D" unique_id=1913431000]
-script = ExtResource("3_883nb")
-
-[node name="PlayerController" type="Node" parent="CharacterBody3D" unique_id=1399782887]
-script = ExtResource("4_7fmhn")
-
-[node name="PlayerCamera" type="Camera3D" parent="CharacterBody3D" unique_id=150315697]
-script = ExtResource("5_mbk3n")
-allow_mouse_rotation = false
-metadata/_custom_type_script = "uid://b3m5vm5llf8ym"
+[node name="CanvasLayer" parent="." unique_id=558184367 instance=ExtResource("6_1ixuk")]

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cikf6cfajpaoy"]
+
+[ext_resource type="Script" uid="uid://pa12g48n3jsi" path="res://components/stats/health.gd" id="1_rrp0o"]
+[ext_resource type="Script" uid="uid://cc0jd16n8l038" path="res://components/chase_target.gd" id="2_jq0pf"]
+[ext_resource type="Script" uid="uid://bkkgi0e5w4ua6" path="res://components/attack.gd" id="3_68dbu"]
+[ext_resource type="Script" uid="uid://c8agy6alj872p" path="res://components/stats/group.gd" id="4_f71c5"]
+[ext_resource type="Texture2D" uid="uid://cf3hk1o0ao2gp" path="res://assets/textures/prototype_tiles/Red/texture_10.png" id="5_adrne"]
+[ext_resource type="Texture2D" uid="uid://bbli6kciu44o6" path="res://assets/textures/prototype_tiles/Orange/texture_10.png" id="6_o0e0p"]
+[ext_resource type="Script" uid="uid://cqid0qiwd2x3p" path="res://components/stats/damage.gd" id="7_68dbu"]
+[ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_f71c5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67dyb"]
+albedo_texture = ExtResource("5_adrne")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_e13xq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjtid"]
+albedo_texture = ExtResource("6_o0e0p")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h3f5w"]
+radius = 0.1
+height = 0.5
+
+[node name="Enemy" type="Node3D" unique_id=1367821508]
+
+[node name="Health" type="Node" parent="." unique_id=1608460523]
+script = ExtResource("1_rrp0o")
+metadata/_custom_type_script = "uid://pa12g48n3jsi"
+
+[node name="ChaseTarget" type="Node" parent="." unique_id=1158947317]
+script = ExtResource("2_jq0pf")
+stop_distance = 1.0
+separation_distance = 1.5
+separation_strength = 1.0
+metadata/_custom_type_script = "uid://cc0jd16n8l038"
+
+[node name="Attack" type="Node" parent="." unique_id=1447035961]
+script = ExtResource("3_68dbu")
+cooldown = 0.5
+metadata/_custom_type_script = "uid://bkkgi0e5w4ua6"
+
+[node name="Group" type="Node" parent="." unique_id=1081940626]
+script = ExtResource("4_f71c5")
+group_name = "Enemy"
+metadata/_custom_type_script = "uid://c8agy6alj872p"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1312632698]
+material_override = SubResource("StandardMaterial3D_67dyb")
+mesh = SubResource("CapsuleMesh_e13xq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1492911662]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.48204947, -0.48382854)
+material_override = SubResource("StandardMaterial3D_bjtid")
+mesh = SubResource("CapsuleMesh_h3f5w")
+
+[node name="Damage" type="Node" parent="." unique_id=1466602054]
+script = ExtResource("7_68dbu")
+damage = 5.0
+metadata/_custom_type_script = "uid://cqid0qiwd2x3p"
+
+[node name="MovementSpeed" type="Node" parent="." unique_id=248162501]
+script = ExtResource("8_f71c5")
+speed = 2.5
+metadata/_custom_type_script = "uid://50waajq81cv1"
+
+[node name="Ground" type="Node3D" parent="." unique_id=1043220557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
