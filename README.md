@@ -63,7 +63,7 @@ Systems do not own entity state; they orchestrate behavior.
 
 ## ⚔️ Abilities Architecture
 
-Abilities use a **data + instance** model inspired by Vampire Survivors.
+Abilities use a **data + instance** model.
 
 ### AbilityData (Resource)
 
@@ -105,7 +105,6 @@ Playable characters are defined as **Resource assets**:
 - Keep systems decoupled
 - Avoid monolithic scripts
 - Allow abilities to be shared by players and enemies
-- Match the fast, modular feel of Vampire Survivors–like games
 
 ---
 
