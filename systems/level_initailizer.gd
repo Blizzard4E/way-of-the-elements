@@ -20,11 +20,18 @@ func _ready() -> void:
 	get_tree().get_current_scene().add_child.call_deferred(player_instance)
 	player_instance.global_position = Vector3(0, 5, 0)
 
-	# Initialize health/energy
-	if player_instance.has_method("set_health"):
-		player_instance.set_health(selected_character.health)
-	if player_instance.has_method("set_energy"):
-		player_instance.set_energy(selected_character.energy)
+	# Initialize health/energy/damage
+	var health_node = player_instance.get_node("Health")
+	var damage_node = player_instance.get_node("Damage")
+	var energy_node = player_instance.get_node("Energy")
+	
+	if health_node:
+		health_node.current_hp = selected_character.health
+	if damage_node:
+		damage_node.damage = selected_character.damage
+	if energy_node:
+		energy_node.energy = selected_character.energy
+	
 
 	# Initialize abilities
 	if player_instance.has_node("Abilities"):

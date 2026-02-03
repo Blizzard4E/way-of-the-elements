@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="ScytheSlashAbility" format=3 uid="uid://boq5qjmr80qm5"]
+[gd_resource type="Resource" script_class="ScytheSlash" format=3 uid="uid://boq5qjmr80qm5"]
 
-[ext_resource type="Script" uid="uid://s886mkxd82cb" path="res://contents/abilities/scripts/scythe_slash.gd" id="1_wstnd"]
+[ext_resource type="PackedScene" uid="uid://dvr4s6y5x71gn" path="res://contents/abilities/scenes/scythe_slash.tscn" id="1_qlqak"]
+[ext_resource type="Script" uid="uid://s886mkxd82cb" path="res://contents/abilities/scripts/scythe_slash.gd" id="2_a37td"]
 
 [resource]
-script = ExtResource("1_wstnd")
+script = ExtResource("2_a37td")
+ability_instance_scene = ExtResource("1_qlqak")
 metadata/_custom_type_script = "uid://s886mkxd82cb"

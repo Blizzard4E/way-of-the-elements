@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://3kglyghuoal6"]
+
+[ext_resource type="Texture2D" uid="uid://dl826f6d2y2bk" path="res://assets/textures/prototype_tiles/Dark/texture_09.png" id="1_oehw1"]
+[ext_resource type="PackedScene" uid="uid://cikf6cfajpaoy" path="res://entities/enemy.tscn" id="4_io7sh"]
+[ext_resource type="PackedScene" uid="uid://dy36s888666jv" path="res://entities/player.tscn" id="8_aruwm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mbk3n"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_1ixuk"]
+sky_material = SubResource("ProceduralSkyMaterial_mbk3n")
+
+[sub_resource type="Environment" id="Environment_8y2k3"]
+background_mode = 2
+sky = SubResource("Sky_1ixuk")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fmhn"]
+albedo_texture = ExtResource("1_oehw1")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_nk8ey"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxbh7"]
+size = Vector3(100, 0.5, 100)
+
+[node name="Node3D" type="Node3D" unique_id=1876190570]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1528225828]
+environment = SubResource("Environment_8y2k3")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=950482958]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=671373393]
+material_override = SubResource("StandardMaterial3D_7fmhn")
+mesh = SubResource("BoxMesh_nk8ey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=501860251]
+shape = SubResource("BoxShape3D_gxbh7")
+
+[node name="Enemy" parent="." unique_id=1367821508 instance=ExtResource("4_io7sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+
+[node name="Player" parent="." unique_id=1390504542 instance=ExtResource("8_aruwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[editable path="Player"]

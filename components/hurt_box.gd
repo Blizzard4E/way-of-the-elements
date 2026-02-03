@@ -1,10 +1,18 @@
 class_name HurtBox
 extends Area3D
 
+# Optional: link to Health or other stats on the entity
+var owner_health: Node = null
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	connect("area_entered", Callable(self, "_on_area_entered"))
+	connect("body_entered", Callable(self, "_on_body_entered"))
 
-func _on_area_entered(body: Node) -> void:
-	print("HurtBox detected body: %s" % body.name)
+# Hitbox calls this
+func receive_damage(amount: float, source: Node) -> void:
+	if owner_health:
+		owner_health.apply_damage(amount, source)
+
+func _on_body_entered(body: Node) -> void:
+	# Optional: if you want HurtBox to auto-register damage from Hitboxes
+	# This is not strictly necessary if Hitbox calls receive_damage
+	pass

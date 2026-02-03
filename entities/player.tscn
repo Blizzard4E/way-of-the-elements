@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cqid0qiwd2x3p" path="res://components/stats/damage.gd" id="7_ef06p"]
 [ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_tjdhl"]
 [ext_resource type="Script" uid="uid://bhgtkebcur28d" path="res://components/abilities.gd" id="9_ef06p"]
+[ext_resource type="Script" uid="uid://dbjhemc7o5rou" path="res://components/stats/energy.gd" id="10_tjdhl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbk3n"]
 
@@ -66,3 +67,7 @@ metadata/_custom_type_script = "uid://50waajq81cv1"
 [node name="Abilities" type="Node" parent="." unique_id=769011647]
 script = ExtResource("9_ef06p")
 metadata/_custom_type_script = "uid://bhgtkebcur28d"
+
+[node name="Energy" type="Node" parent="." unique_id=1239719631]
+script = ExtResource("10_tjdhl")
+metadata/_custom_type_script = "uid://dbjhemc7o5rou"

@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dvr4s6y5x71gn"]
+
+[ext_resource type="Script" uid="uid://c6l5ey4y1v0ij" path="res://components/hit_box.gd" id="1_j6f2i"]
+[ext_resource type="Texture2D" uid="uid://1w8w7payh1hr" path="res://assets/textures/prototype_tiles/Red/texture_08.png" id="2_qw8aa"]
+[ext_resource type="Texture2D" uid="uid://cr5mpcg8xb1un" path="res://assets/textures/prototype_tiles/Purple/texture_08.png" id="3_snpj0"]
+[ext_resource type="Script" uid="uid://croicmxlcgnax" path="res://components/follow_owner.gd" id="4_lg7je"]
+[ext_resource type="Script" uid="uid://dh1fwongxp6sm" path="res://components/lifetime.gd" id="5_o2pc7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x08pd"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_lg7je"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_o2pc7"]
+resource_name = "ScytheSlash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.265732, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_88r0y"]
+_data = {
+&"RESET": SubResource("Animation_lg7je"),
+&"scythe_slash": SubResource("Animation_o2pc7")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1h5o"]
+albedo_texture = ExtResource("2_qw8aa")
+
+[sub_resource type="SphereMesh" id="SphereMesh_j6f2i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvare"]
+albedo_texture = ExtResource("3_snpj0")
+
+[node name="ScytheSlash" type="Node3D" unique_id=2130897942]
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=2043892591]
+script = ExtResource("1_j6f2i")
+metadata/_custom_type_script = "uid://c6l5ey4y1v0ij"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1416350501]
+shape = SubResource("SphereShape3D_x08pd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=695582027]
+libraries/ = SubResource("AnimationLibrary_88r0y")
+autoplay = &"scythe_slash"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=196265505]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=2086986838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+material_override = SubResource("StandardMaterial3D_v1h5o")
+mesh = SubResource("SphereMesh_j6f2i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" unique_id=1702755850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+material_override = SubResource("StandardMaterial3D_jvare")
+mesh = SubResource("SphereMesh_j6f2i")
+
+[node name="FollowOwner" type="Node" parent="." unique_id=1453506632]
+script = ExtResource("4_lg7je")
+metadata/_custom_type_script = "uid://croicmxlcgnax"
+
+[node name="Lifetime" type="Node" parent="." unique_id=489606909]
+script = ExtResource("5_o2pc7")
+metadata/_custom_type_script = "uid://dh1fwongxp6sm"
