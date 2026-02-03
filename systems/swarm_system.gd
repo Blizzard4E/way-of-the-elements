@@ -17,33 +17,27 @@ extends Node  # Node, not Node3D
 @export var debug_print: bool = true
 
 var _spawn_timer: float = 0.0
-var _player: Node3D = null
-
-func _ready():
-	var players = get_tree().get_nodes_in_group("Player")
-	if players.size() == 0:
-		push_error("No player found for SwarmSystem")
-		return
-	_player = players[0] as Node3D
+var player: Node3D = null 
 
 func _physics_process(delta):
-	if not _player:
+	if not player:
 		return
-
+	
 	_spawn_timer += delta
 	if _spawn_timer >= spawn_interval:
 		_spawn_timer = 0.0
 		_spawn_enemy()
 
 func _spawn_enemy():
+	if not player:
+		return
 	# Limit total enemies
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	if enemies.size() >= max_enemies:
 		if debug_print:
 			print("[SwarmSystem] Max enemies reached: %d" % enemies.size())
 		return
-	if not _player:
-		return
+	
 
 	# Instantiate enemy
 	var enemy_instance = enemy_scene.instantiate() as Node3D
@@ -52,8 +46,8 @@ func _spawn_enemy():
 	# Random spawn around player X/Z
 	var angle = randf() * TAU
 	var distance = spawn_radius * (0.5 + randf() * 0.5)
-	var spawn_x = _player.global_position.x + sin(angle) * distance
-	var spawn_z = _player.global_position.z + cos(angle) * distance 
+	var spawn_x = player.global_position.x + sin(angle) * distance
+	var spawn_z = player.global_position.z + cos(angle) * distance 
 
 	# Raycast downward to place on floor
 	var ray_origin = Vector3(spawn_x, raycast_height, spawn_z)
@@ -80,9 +74,7 @@ func _spawn_enemy():
 	if ground_node:
 		# The ground node's position in the enemy's local space
 		# tells us how far below (or above) the root the feet are
-		ground_offset_y = ground_node.position.y
-		if debug_print:
-			print("[SwarmSystem] Ground node local Y: ", ground_offset_y)
+		ground_offset_y = ground_node.position.y 
 
 	# Subtract it so the feet land on the floor, not the pivot
 	enemy_instance.global_position = Vector3(

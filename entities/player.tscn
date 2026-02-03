@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bv2j7ge4ybgpq" path="res://assets/textures/prototype_tiles/Light/texture_08.png" id="6_qsoyl"]
 [ext_resource type="Script" uid="uid://cqid0qiwd2x3p" path="res://components/stats/damage.gd" id="7_ef06p"]
 [ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_tjdhl"]
+[ext_resource type="Script" uid="uid://bhgtkebcur28d" path="res://components/abilities.gd" id="9_ef06p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbk3n"]
 
@@ -32,6 +33,11 @@ shape = SubResource("CapsuleShape3D_mbk3n")
 material_override = SubResource("StandardMaterial3D_1ixuk")
 mesh = SubResource("CapsuleMesh_8y2k3")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" unique_id=622358579]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.48204947, -0.48382854)
+material_override = SubResource("StandardMaterial3D_6nm46")
+mesh = SubResource("CapsuleMesh_i623q")
+
 [node name="Health" type="Node3D" parent="." unique_id=81787976]
 script = ExtResource("2_qly61")
 
@@ -49,11 +55,6 @@ script = ExtResource("5_qly61")
 group_name = "Player"
 metadata/_custom_type_script = "uid://c8agy6alj872p"
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=622358579]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.48204947, -0.48382854)
-material_override = SubResource("StandardMaterial3D_6nm46")
-mesh = SubResource("CapsuleMesh_i623q")
-
 [node name="Damage" type="Node" parent="." unique_id=1678062940]
 script = ExtResource("7_ef06p")
 metadata/_custom_type_script = "uid://cqid0qiwd2x3p"
@@ -61,3 +62,7 @@ metadata/_custom_type_script = "uid://cqid0qiwd2x3p"
 [node name="MovementSpeed" type="Node" parent="." unique_id=199098917]
 script = ExtResource("8_tjdhl")
 metadata/_custom_type_script = "uid://50waajq81cv1"
+
+[node name="Abilities" type="Node" parent="." unique_id=769011647]
+script = ExtResource("9_ef06p")
+metadata/_custom_type_script = "uid://bhgtkebcur28d"

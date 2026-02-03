@@ -32,8 +32,7 @@ func execute(target: Node):
 	var enemy = get_parent() as Node3D
 	if not enemy:
 		return
-	
-	print("%s attacks %s!" % [enemy.name, target.name])
+	 
 	_cooldown_timer = cooldown
 	
 	# Damage target if it has a Damage component

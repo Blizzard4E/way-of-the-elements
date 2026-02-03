@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ScytheSlashAbility" format=3 uid="uid://boq5qjmr80qm5"]
+
+[ext_resource type="Script" uid="uid://s886mkxd82cb" path="res://contents/abilities/scripts/scythe_slash.gd" id="1_wstnd"]
+
+[resource]
+script = ExtResource("1_wstnd")
+metadata/_custom_type_script = "uid://s886mkxd82cb"

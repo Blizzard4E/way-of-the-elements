@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bbli6kciu44o6" path="res://assets/textures/prototype_tiles/Orange/texture_10.png" id="6_o0e0p"]
 [ext_resource type="Script" uid="uid://cqid0qiwd2x3p" path="res://components/stats/damage.gd" id="7_68dbu"]
 [ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_f71c5"]
+[ext_resource type="Script" uid="uid://cwy7b7q18polr" path="res://components/hurt_box.gd" id="9_f71c5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67dyb"]
 albedo_texture = ExtResource("5_adrne")
@@ -20,6 +21,8 @@ albedo_texture = ExtResource("6_o0e0p")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h3f5w"]
 radius = 0.1
 height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_adrne"]
 
 [node name="Enemy" type="Node3D" unique_id=1367821508]
 
@@ -65,3 +68,10 @@ metadata/_custom_type_script = "uid://50waajq81cv1"
 
 [node name="Ground" type="Node3D" parent="." unique_id=1043220557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=28095377]
+script = ExtResource("9_f71c5")
+metadata/_custom_type_script = "uid://cwy7b7q18polr"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1357160768]
+shape = SubResource("CapsuleShape3D_adrne")

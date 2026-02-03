@@ -24,9 +24,9 @@ window/vsync/vsync_mode=0
 [file_customization]
 
 folder_colors={
-"res://assets/": "green",
+"res://assets/": "gray",
 "res://components/": "pink",
-"res://contents/": "teal",
+"res://contents/": "yellow",
 "res://entities/": "purple",
 "res://systems/": "orange"
 }
