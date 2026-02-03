@@ -1,8 +1,6 @@
 # 🧛 ECS-based Vampire Survivors–like (3D)
 
-This project is a **3D Vampire Survivors–style game** built in **Godot**, focused on experimenting with a **practical ECS-inspired architecture** rather than a strict data-only ECS implementation.
-
-The goal is to explore how far **composition, systems, and data-driven design** can be pushed in Godot while keeping the project readable, debuggable, and iteration-friendly.
+This project is a **3D Vampire Survivors–style game** built in **Godot**, focused on experimenting with a **practical ECS-inspired architecture**.
 
 ---
 
