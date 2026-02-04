@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c06ic8tvkxu4k" path="res://systems/abilities_system.gd" id="7_8y2k3"]
 [ext_resource type="Script" uid="uid://dcplm184rj3u4" path="res://systems/behavior_system.gd" id="8_h681u"]
 [ext_resource type="Resource" uid="uid://cfpertvijr1ih" path="res://contents/playable_characters/earth_master.tres" id="9_bk8nm"]
+[ext_resource type="Script" uid="uid://d2n1tabjndn2x" path="res://systems/death_system.gd" id="10_ggh40"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mbk3n"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -69,3 +70,6 @@ player_scene = ExtResource("2_1hs15")
 swarm_system = NodePath("../SwarmSystem")
 selected_character = ExtResource("9_bk8nm")
 metadata/_custom_type_script = "uid://d0gylqnjxv0ma"
+
+[node name="DeathSystem" type="Node" parent="." unique_id=1682242924]
+script = ExtResource("10_ggh40")

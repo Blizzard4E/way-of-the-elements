@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dano2ikgmpvke"]
+
+[ext_resource type="Shader" uid="uid://ddvb8f5yvdk8n" path="res://contents/shaders/visual_flash.gdshader" id="1_0hb6m"]
+[ext_resource type="Texture2D" uid="uid://cf3hk1o0ao2gp" path="res://assets/textures/prototype_tiles/Red/texture_10.png" id="2_lv42b"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0hb6m")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_lv42b")
+shader_parameter/albedo_texture_size = Vector2i(1024, 1024)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/damage_flash = 0.0
+shader_parameter/flash_color = Vector3(1, 1, 1)

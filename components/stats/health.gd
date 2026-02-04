@@ -16,7 +16,7 @@ signal damaged(amount: float)
 			health_hit_zero.emit()
 
 func take_damage(amount: float):
-	current_hp -= amount
+	current_hp -= amount 
 	damaged.emit(amount)
 
 func heal(amount: float):

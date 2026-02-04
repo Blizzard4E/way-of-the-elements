@@ -4,25 +4,29 @@
 [ext_resource type="Script" uid="uid://cc0jd16n8l038" path="res://components/chase_target.gd" id="2_jq0pf"]
 [ext_resource type="Script" uid="uid://bkkgi0e5w4ua6" path="res://components/attack.gd" id="3_68dbu"]
 [ext_resource type="Script" uid="uid://c8agy6alj872p" path="res://components/stats/group.gd" id="4_f71c5"]
-[ext_resource type="Texture2D" uid="uid://cf3hk1o0ao2gp" path="res://assets/textures/prototype_tiles/Red/texture_10.png" id="5_adrne"]
-[ext_resource type="Texture2D" uid="uid://bbli6kciu44o6" path="res://assets/textures/prototype_tiles/Orange/texture_10.png" id="6_o0e0p"]
+[ext_resource type="Material" uid="uid://dano2ikgmpvke" path="res://contents/npcs/enemy/enemy_material.tres" id="5_o0e0p"]
+[ext_resource type="Material" uid="uid://c621nmmbmg28f" path="res://contents/npcs/enemy/enemy_eye_material.tres" id="6_nfp2m"]
 [ext_resource type="Script" uid="uid://cqid0qiwd2x3p" path="res://components/stats/damage.gd" id="7_68dbu"]
 [ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_f71c5"]
 [ext_resource type="Script" uid="uid://cwy7b7q18polr" path="res://components/hurt_box.gd" id="9_f71c5"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67dyb"]
-albedo_texture = ExtResource("5_adrne")
+[ext_resource type="Script" uid="uid://c0k8wgwhxexlx" path="res://components/visual_flash.gd" id="10_adrne"]
+[ext_resource type="Script" uid="uid://bhgtkebcur28d" path="res://components/abilities.gd" id="12_nfp2m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e13xq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjtid"]
-albedo_texture = ExtResource("6_o0e0p")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h3f5w"]
 radius = 0.1
 height = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_adrne"]
+
+[sub_resource type="Animation" id="Animation_o0e0p"]
+resource_name = "take_damage"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfp2m"]
+_data = {
+&"take_damage": SubResource("Animation_o0e0p")
+}
 
 [node name="Enemy" type="Node3D" unique_id=1367821508]
 
@@ -48,13 +52,13 @@ group_name = "Enemy"
 metadata/_custom_type_script = "uid://c8agy6alj872p"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1312632698]
-material_override = SubResource("StandardMaterial3D_67dyb")
 mesh = SubResource("CapsuleMesh_e13xq")
+surface_material_override/0 = ExtResource("5_o0e0p")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1492911662]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1492911662]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.48204947, -0.48382854)
-material_override = SubResource("StandardMaterial3D_bjtid")
 mesh = SubResource("CapsuleMesh_h3f5w")
+surface_material_override/0 = ExtResource("6_nfp2m")
 
 [node name="Damage" type="Node" parent="." unique_id=1466602054]
 script = ExtResource("7_68dbu")
@@ -75,3 +79,15 @@ metadata/_custom_type_script = "uid://cwy7b7q18polr"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1357160768]
 shape = SubResource("CapsuleShape3D_adrne")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1634915237]
+libraries/ = SubResource("AnimationLibrary_nfp2m")
+
+[node name="VisualFlash" type="Node" parent="." unique_id=1806834045 node_paths=PackedStringArray("meshes")]
+script = ExtResource("10_adrne")
+meshes = [NodePath("../MeshInstance3D"), NodePath("../MeshInstance3D/MeshInstance3D2")]
+metadata/_custom_type_script = "uid://c0k8wgwhxexlx"
+
+[node name="Abilities" type="Node" parent="." unique_id=1817213811]
+script = ExtResource("12_nfp2m")
+metadata/_custom_type_script = "uid://bhgtkebcur28d"
