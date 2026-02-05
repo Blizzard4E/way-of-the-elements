@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_f71c5"]
 [ext_resource type="Script" uid="uid://cwy7b7q18polr" path="res://components/hurt_box.gd" id="9_f71c5"]
 [ext_resource type="Script" uid="uid://c0k8wgwhxexlx" path="res://components/visual_flash.gd" id="10_adrne"]
+[ext_resource type="Script" uid="uid://c7hb7ap53tl88" path="res://components/damage_number_emitter.gd" id="12_5ku5l"]
 [ext_resource type="Script" uid="uid://bhgtkebcur28d" path="res://components/abilities.gd" id="12_nfp2m"]
+[ext_resource type="PackedScene" uid="uid://dm11ey0s78w6v" path="res://contents/effects/scenes/damage_number.tscn" id="13_5ku5l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e13xq"]
 
@@ -91,3 +93,8 @@ metadata/_custom_type_script = "uid://c0k8wgwhxexlx"
 [node name="Abilities" type="Node" parent="." unique_id=1817213811]
 script = ExtResource("12_nfp2m")
 metadata/_custom_type_script = "uid://bhgtkebcur28d"
+
+[node name="DamageNumberEmitter" type="Node" parent="." unique_id=1330291526]
+script = ExtResource("12_5ku5l")
+damage_number_scene = ExtResource("13_5ku5l")
+metadata/_custom_type_script = "uid://c7hb7ap53tl88"

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dm11ey0s78w6v"]
+
+[ext_resource type="Script" uid="uid://dgoa0uov62nf1" path="res://contents/effects/scripts/damage_number.gd" id="1_t7j8i"]
+
+[node name="Control" type="Control" unique_id=569414654 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t7j8i")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=2035437720]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24

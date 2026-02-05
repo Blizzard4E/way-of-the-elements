@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cr5mpcg8xb1un" path="res://assets/textures/prototype_tiles/Purple/texture_08.png" id="3_snpj0"]
 [ext_resource type="Script" uid="uid://croicmxlcgnax" path="res://components/follow_owner.gd" id="4_lg7je"]
 [ext_resource type="Script" uid="uid://dh1fwongxp6sm" path="res://components/lifetime.gd" id="5_o2pc7"]
+[ext_resource type="AudioStream" uid="uid://h8sbxbpbmfj0" path="res://contents/sounds/scythe_slash.ogg" id="6_o2pc7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x08pd"]
 radius = 6.0
@@ -35,6 +36,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_o2pc7"]
 resource_name = "ScytheSlash"
@@ -57,10 +70,22 @@ tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8, 0.96666664),
+"times": PackedFloat32Array(0, 0.3, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.23333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_88r0y"]
@@ -110,3 +135,6 @@ metadata/_custom_type_script = "uid://croicmxlcgnax"
 [node name="Lifetime" type="Node" parent="." unique_id=489606909]
 script = ExtResource("5_o2pc7")
 metadata/_custom_type_script = "uid://dh1fwongxp6sm"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1920820789]
+stream = ExtResource("6_o2pc7")
