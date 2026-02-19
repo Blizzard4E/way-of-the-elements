@@ -138,3 +138,4 @@ metadata/_custom_type_script = "uid://dh1fwongxp6sm"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1920820789]
 stream = ExtResource("6_o2pc7")
+bus = &"Sound Effects"

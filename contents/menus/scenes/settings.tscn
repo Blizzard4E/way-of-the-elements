@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://daioewxt4cvqc"]
+
+[ext_resource type="Script" uid="uid://drr1njbpaapay" path="res://contents/menus/scripts/settings.gd" id="1_fg85h"]
+[ext_resource type="Texture2D" uid="uid://b8c0l7agf5sou" path="res://assets/textures/prototype_tiles/Dark/texture_08.png" id="2_roc8s"]
+[ext_resource type="Script" uid="uid://g2kgtoumgnnr" path="res://contents/menus/scripts/volume_slider.gd" id="3_ys8ql"]
+
+[node name="Settings" type="CanvasLayer" unique_id=95445551 node_paths=PackedStringArray("resume_button", "exit_button", "tab_buttons", "tab_contents")]
+process_mode = 2
+script = ExtResource("1_fg85h")
+resume_button = NodePath("Control/Tabs/Tab Navigation/VBoxContainer/Continue")
+exit_button = NodePath("Control/Tabs/Tab Navigation/VBoxContainer/Exit")
+tab_buttons = [NodePath("Control/Tabs/Tab Navigation/VBoxContainer/Sound"), NodePath("Control/Tabs/Tab Navigation/VBoxContainer/Video")]
+tab_contents = [NodePath("Control/Tabs/Sound Tab Content"), NodePath("Control/Tabs/Video Tab Content")]
+
+[node name="Control" type="Control" parent="." unique_id=428895025]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=957587348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_roc8s")
+stretch_mode = 1
+
+[node name="Tabs" type="HBoxContainer" parent="Control" unique_id=1227635657]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -59.5
+offset_right = 700.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="Tab Navigation" type="VBoxContainer" parent="Control/Tabs" unique_id=457873038]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="Control/Tabs/Tab Navigation" unique_id=101342783]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Tabs/Tab Navigation" unique_id=1945227412]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="Control/Tabs/Tab Navigation/VBoxContainer" unique_id=893180318]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+alignment = 0
+
+[node name="Sound" type="Button" parent="Control/Tabs/Tab Navigation/VBoxContainer" unique_id=323737723]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sound
+"
+alignment = 0
+
+[node name="Video" type="Button" parent="Control/Tabs/Tab Navigation/VBoxContainer" unique_id=1948564362]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Video
+"
+alignment = 0
+
+[node name="Exit" type="Button" parent="Control/Tabs/Tab Navigation/VBoxContainer" unique_id=170898732]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Exit
+"
+alignment = 0
+
+[node name="Sound Tab Content" type="VBoxContainer" parent="Control/Tabs" unique_id=92341284]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="Master" type="VBoxContainer" parent="Control/Tabs/Sound Tab Content" unique_id=289318756]
+layout_mode = 2
+theme_override_constants/separation = 4
+script = ExtResource("3_ys8ql")
+bus_name = "Master"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Tabs/Sound Tab Content/Master" unique_id=555014346]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Tabs/Sound Tab Content/Master/HBoxContainer" unique_id=3129564]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+
+[node name="ValueLabel" type="Label" parent="Control/Tabs/Sound Tab Content/Master/HBoxContainer" unique_id=1293713802]
+layout_mode = 2
+text = "0"
+
+[node name="HSlider" type="HSlider" parent="Control/Tabs/Sound Tab Content/Master" unique_id=1421457555]
+layout_mode = 2
+
+[node name="Music" type="VBoxContainer" parent="Control/Tabs/Sound Tab Content" unique_id=1842514808]
+layout_mode = 2
+theme_override_constants/separation = 4
+script = ExtResource("3_ys8ql")
+bus_name = "Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Tabs/Sound Tab Content/Music" unique_id=1116230646]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Tabs/Sound Tab Content/Music/HBoxContainer" unique_id=705542235]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+
+[node name="ValueLabel" type="Label" parent="Control/Tabs/Sound Tab Content/Music/HBoxContainer" unique_id=1421070224]
+layout_mode = 2
+text = "0"
+
+[node name="HSlider" type="HSlider" parent="Control/Tabs/Sound Tab Content/Music" unique_id=296704326]
+layout_mode = 2
+
+[node name="SoundEffects" type="VBoxContainer" parent="Control/Tabs/Sound Tab Content" unique_id=1199614000]
+layout_mode = 2
+theme_override_constants/separation = 4
+script = ExtResource("3_ys8ql")
+bus_name = "Sound Effects"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Tabs/Sound Tab Content/SoundEffects" unique_id=465522317]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Tabs/Sound Tab Content/SoundEffects/HBoxContainer" unique_id=505423754]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+
+[node name="ValueLabel" type="Label" parent="Control/Tabs/Sound Tab Content/SoundEffects/HBoxContainer" unique_id=996080248]
+layout_mode = 2
+text = "0"
+
+[node name="HSlider" type="HSlider" parent="Control/Tabs/Sound Tab Content/SoundEffects" unique_id=572941145]
+layout_mode = 2
+
+[node name="Video Tab Content" type="VBoxContainer" parent="Control/Tabs" unique_id=66705836]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/Tabs/Video Tab Content" unique_id=211011125]
+layout_mode = 2
+text = "WIP"

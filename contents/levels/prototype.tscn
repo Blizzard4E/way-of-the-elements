@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://5iu4driwk5xr"]
 
+[ext_resource type="Script" uid="uid://3l0qdqvs3p1d" path="res://contents/menus/scripts/pause.gd" id="1_3c7gm"]
 [ext_resource type="Texture2D" uid="uid://dl826f6d2y2bk" path="res://assets/textures/prototype_tiles/Dark/texture_09.png" id="1_vo8sw"]
 [ext_resource type="PackedScene" uid="uid://dy36s888666jv" path="res://entities/player.tscn" id="2_1hs15"]
 [ext_resource type="PackedScene" uid="uid://cikf6cfajpaoy" path="res://entities/enemy.tscn" id="3_7fmhn"]
@@ -10,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dcplm184rj3u4" path="res://systems/behavior_system.gd" id="8_h681u"]
 [ext_resource type="Resource" uid="uid://cfpertvijr1ih" path="res://contents/playable_characters/earth_master.tres" id="9_bk8nm"]
 [ext_resource type="Script" uid="uid://d2n1tabjndn2x" path="res://systems/death_system.gd" id="10_ggh40"]
+[ext_resource type="PackedScene" uid="uid://daioewxt4cvqc" path="res://contents/menus/scenes/settings.tscn" id="12_4ikoi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mbk3n"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -83,3 +85,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Settings" parent="." unique_id=95445551 node_paths=PackedStringArray("pause_handler") instance=ExtResource("12_4ikoi")]
+pause_handler = NodePath("../PauseHandler")
+
+[node name="PauseHandler" type="Node" parent="." unique_id=1037458397 node_paths=PackedStringArray("settings_menu")]
+process_mode = 3
+script = ExtResource("1_3c7gm")
+settings_menu = NodePath("../Settings")

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://50waajq81cv1" path="res://components/stats/movement_speed.gd" id="8_tjdhl"]
 [ext_resource type="Script" uid="uid://bhgtkebcur28d" path="res://components/abilities.gd" id="9_ef06p"]
 [ext_resource type="Script" uid="uid://dbjhemc7o5rou" path="res://components/stats/energy.gd" id="10_tjdhl"]
+[ext_resource type="Script" uid="uid://ck5ata417nxp" path="res://components/heath_bar.gd" id="11_x08pd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbk3n"]
 
@@ -24,6 +25,21 @@ albedo_texture = ExtResource("6_qsoyl")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i623q"]
 radius = 0.1
 height = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tjdhl"]
+viewport_path = NodePath("HeathBar/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dchgp"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.7019608, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
 [node name="Player" type="CharacterBody3D" unique_id=1390504542]
 
@@ -71,3 +87,21 @@ metadata/_custom_type_script = "uid://bhgtkebcur28d"
 [node name="Energy" type="Node" parent="." unique_id=1239719631]
 script = ExtResource("10_tjdhl")
 metadata/_custom_type_script = "uid://dbjhemc7o5rou"
+
+[node name="HeathBar" type="Sprite3D" parent="." unique_id=485566496 node_paths=PackedStringArray("progress_bar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+billboard = 1
+no_depth_test = true
+texture = SubResource("ViewportTexture_tjdhl")
+script = ExtResource("11_x08pd")
+progress_bar = NodePath("SubViewport/ProgressBar")
+
+[node name="SubViewport" type="SubViewport" parent="HeathBar" unique_id=1928768369]
+transparent_bg = true
+size = Vector2i(200, 27)
+
+[node name="ProgressBar" type="ProgressBar" parent="HeathBar/SubViewport" unique_id=1106011707]
+offset_right = 200.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dchgp")
+value = 50.0
