@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cofixryfqxu5y"]
+
+[ext_resource type="Script" uid="uid://ullgdks0m3e" path="res://components/pickupable.gd" id="1_sooo4"]
+[ext_resource type="Script" uid="uid://dte82cq18kvo8" path="res://contents/pick_ups/base/pickup_effect.gd" id="2_yjkut"]
+[ext_resource type="Script" uid="uid://cxvmytrrqou84" path="res://contents/pick_ups/scripts/health_pickup_effect.gd" id="3_kokv6"]
+[ext_resource type="Texture2D" uid="uid://ctn7ey5psptar" path="res://assets/textures/prototype_tiles/Green/texture_10.png" id="4_vmx1x"]
+
+[sub_resource type="Resource" id="Resource_drsdi"]
+script = ExtResource("3_kokv6")
+metadata/_custom_type_script = "uid://cxvmytrrqou84"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36if7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sl3f"]
+albedo_texture = ExtResource("4_vmx1x")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_om20c"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[node name="HealthPickup" type="Node3D" unique_id=1877130004]
+
+[node name="Pickupable" type="Area3D" parent="." unique_id=1338664978]
+script = ExtResource("1_sooo4")
+effects = Array[ExtResource("2_yjkut")]([SubResource("Resource_drsdi")])
+metadata/_custom_type_script = "uid://ullgdks0m3e"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickupable" unique_id=1839285396]
+shape = SubResource("BoxShape3D_36if7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1224361839]
+material_override = SubResource("StandardMaterial3D_7sl3f")
+mesh = SubResource("BoxMesh_om20c")

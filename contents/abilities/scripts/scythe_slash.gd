@@ -22,7 +22,7 @@ func activate(slot: AbilitySlot, owner: Node) -> void:
 	if owner.has_node("Damage"):
 		base_dmg = (owner.get_node("Damage") as Damage).damage
 
-	var skill_dmg := base_dmg * skill_damage_multiplier
+	var skill_dmg := base_dmg * (skill_damage_multiplier + 0.1 * (slot.level - 1))
 
 	var ability_instance = ability_instance_scene.instantiate()
 	owner.get_parent().add_child(ability_instance)
@@ -31,6 +31,13 @@ func activate(slot: AbilitySlot, owner: Node) -> void:
 	var hitbox := ability_instance.get_node_or_null("Hitbox") as Hitbox
 	if hitbox:
 		hitbox.damage = skill_dmg
+
+		# --- Update hitbox range based on slot level ---
+		var collision_shape = hitbox.get_node_or_null("CollisionShape3D")
+		if collision_shape and collision_shape.shape is SphereShape3D:
+			# Example: base range * (1 + 0.2 * (level - 1))
+			var new_radius = scythe_range * (1 + 0.2 * (slot.level - 1))
+			collision_shape.shape.radius = new_radius
 
 	# --- Follow owner ---
 	var follow_owner := ability_instance.get_node_or_null("FollowOwner") as FollowOwner
@@ -52,3 +59,5 @@ func activate(slot: AbilitySlot, owner: Node) -> void:
 			if lifetime:
 				var adjusted_duration := anim.length / attack_speed
 				lifetime.duration = adjusted_duration
+				slot.cooldown_timer = adjusted_duration
+ 

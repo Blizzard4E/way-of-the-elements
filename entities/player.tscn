@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://bhgtkebcur28d" path="res://components/abilities.gd" id="9_ef06p"]
 [ext_resource type="Script" uid="uid://dbjhemc7o5rou" path="res://components/stats/energy.gd" id="10_tjdhl"]
 [ext_resource type="Script" uid="uid://ck5ata417nxp" path="res://components/heath_bar.gd" id="11_x08pd"]
+[ext_resource type="Script" uid="uid://cgovitse4lnc0" path="res://components/pickup_collector.gd" id="12_dchgp"]
+[ext_resource type="Script" uid="uid://c3eyso4mwtrj0" path="res://components/xp.gd" id="13_kdgjc"]
+[ext_resource type="Script" uid="uid://b51ka1qswc8u3" path="res://components/xp_bar.gd" id="14_q0i8f"]
+[ext_resource type="Script" uid="uid://how2ij6ssu0l" path="res://components/level.gd" id="15_0i614"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mbk3n"]
 
@@ -35,6 +39,21 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 bg_color = Color(0, 0.7019608, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q0i8f"]
+viewport_path = NodePath("XPBar/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0i8f"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.7019608, 0.8980392, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -105,3 +124,34 @@ offset_right = 200.0
 offset_bottom = 27.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_dchgp")
 value = 50.0
+
+[node name="XPBar" type="Sprite3D" parent="." unique_id=773691994 node_paths=PackedStringArray("xp_component", "progress_bar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+billboard = 1
+no_depth_test = true
+texture = SubResource("ViewportTexture_q0i8f")
+script = ExtResource("14_q0i8f")
+xp_component = NodePath("../XP")
+progress_bar = NodePath("SubViewport/ProgressBar")
+metadata/_custom_type_script = "uid://b51ka1qswc8u3"
+
+[node name="SubViewport" type="SubViewport" parent="XPBar" unique_id=2012438052]
+transparent_bg = true
+size = Vector2i(200, 27)
+
+[node name="ProgressBar" type="ProgressBar" parent="XPBar/SubViewport" unique_id=1803869656]
+offset_right = 200.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_q0i8f")
+value = 50.0
+
+[node name="PickupCollector" type="Node" parent="." unique_id=1891741819]
+script = ExtResource("12_dchgp")
+metadata/_custom_type_script = "uid://cgovitse4lnc0"
+
+[node name="XP" type="Node" parent="." unique_id=714768024]
+script = ExtResource("13_kdgjc")
+metadata/_custom_type_script = "uid://c3eyso4mwtrj0"
+
+[node name="Level" type="Node" parent="." unique_id=2018178785]
+script = ExtResource("15_0i614")

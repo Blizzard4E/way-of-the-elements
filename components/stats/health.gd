@@ -20,12 +20,8 @@ func take_damage(amount: float):
 		return
 	if current_hp <= 0:
 		return
-	if current_hp - amount < 0:
-		current_hp = 0
-	else:
-		current_hp -= amount 
+	current_hp = current_hp - amount
 	damaged.emit(amount)
 
 func heal(amount: float):
-	current_hp += amount
-	current_hp = clamp(current_hp, 0, max_hp)
+	current_hp = current_hp + amount

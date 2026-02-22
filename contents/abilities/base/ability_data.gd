@@ -8,7 +8,6 @@ func tick(slot: AbilitySlot, delta: float, owner: Node) -> void:
 	slot.cooldown_timer -= delta
 	if slot.cooldown_timer <= 0:
 		activate(slot, owner)
-		slot.cooldown_timer = cooldown / slot.level
 
 
 func activate(slot: AbilitySlot, owner: Node) -> void:

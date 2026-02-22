@@ -12,6 +12,9 @@
 [ext_resource type="Resource" uid="uid://cfpertvijr1ih" path="res://contents/playable_characters/earth_master.tres" id="9_bk8nm"]
 [ext_resource type="Script" uid="uid://d2n1tabjndn2x" path="res://systems/death_system.gd" id="10_ggh40"]
 [ext_resource type="PackedScene" uid="uid://daioewxt4cvqc" path="res://contents/menus/scenes/settings.tscn" id="12_4ikoi"]
+[ext_resource type="PackedScene" uid="uid://cofixryfqxu5y" path="res://contents/pick_ups/scenes/health_pickup.tscn" id="13_4ikoi"]
+[ext_resource type="Script" uid="uid://bl1fwcnhhr36h" path="res://systems/loot_drop_system.gd" id="14_2cr0j"]
+[ext_resource type="Script" uid="uid://ds6i4i4oqotq8" path="res://systems/player_level_system.gd" id="15_rkmfj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mbk3n"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -93,3 +96,16 @@ pause_handler = NodePath("../PauseHandler")
 process_mode = 3
 script = ExtResource("1_3c7gm")
 settings_menu = NodePath("../Settings")
+
+[node name="LootDropSystem" type="Node" parent="." unique_id=1827762371 node_paths=PackedStringArray("death_system")]
+script = ExtResource("14_2cr0j")
+death_system = NodePath("../DeathSystem")
+loot_table = Array[PackedScene]([ExtResource("13_4ikoi")])
+drop_chances = Array[float]([0.2])
+metadata/_custom_type_script = "uid://bl1fwcnhhr36h"
+
+[node name="PlayerLevelSystem" type="Node" parent="." unique_id=1237439536 node_paths=PackedStringArray("death_system")]
+script = ExtResource("15_rkmfj")
+death_system = NodePath("../DeathSystem")
+level_cap_base = 30
+metadata/_custom_type_script = "uid://ds6i4i4oqotq8"
